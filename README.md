@@ -27,12 +27,15 @@ npm run optimize-assets
 
 1. Push to the `main` branch on GitHub.
 2. Go to **Settings → Pages → Build and deployment**.
-3. Set **Source** to **GitHub Actions**.
-4. Push to `main` — the workflow builds and deploys automatically.
+3. Set **Source** to **Deploy from a branch** (not GitHub Actions).
+4. Set **Branch** to **`gh-pages`** and folder to **`/ (root)`**.
+5. Save. The workflow pushes the built site to `gh-pages` on every push to `main`.
 
 Your site will be live at:
 
 `https://geethika2506.github.io/Geethika2506-portfolio/`
+
+**Note:** Do not use `actions/deploy-pages` with GitHub Actions as the Pages source — re-running failed jobs creates duplicate `github-pages` artifacts. This repo uses the `gh-pages` branch instead.
 
 ## Custom domain (optional)
 
