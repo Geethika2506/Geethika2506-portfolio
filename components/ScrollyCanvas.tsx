@@ -1,98 +1,104 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useScroll, useMotionValueEvent } from "framer-motion";
+import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import Overlay from "./Overlay";
 
-const FRAME_COUNT = 240;
+const FRAME_COUNT = 60;
 
-const currentFrame = (index: number) => 
-  `/sequence/frame_${index.toString().padStart(3, "0")}_delay-0.041s.png`;
+const currentFrame = (index: number) =>
+  `/sequence-lite/frame_${index.toString().padStart(3, "0")}.webp`;
 
 export default function ScrollyCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [images, setImages] = useState<HTMLImageElement[]>([]);
-  
+  const [loadProgress, setLoadProgress] = useState(0);
+  const [isReady, setIsReady] = useState(false);
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start start", "end end"]
+    offset: ["start start", "end end"],
   });
 
-  // Preload images
   useEffect(() => {
-    const loadedImages: HTMLImageElement[] = [];
+    let cancelled = false;
+    const loadedImages: HTMLImageElement[] = new Array(FRAME_COUNT);
     let loadedCount = 0;
-    let failedCount = 0;
-    
+
+    const finish = () => {
+      if (cancelled) return;
+      setImages(loadedImages.filter(Boolean));
+      setIsReady(true);
+      if (canvasRef.current && loadedImages[0]) {
+        const ctx = canvasRef.current.getContext("2d");
+        if (ctx) renderFrame(0, ctx, loadedImages);
+      }
+    };
+
     for (let i = 0; i < FRAME_COUNT; i++) {
       const img = new Image();
       img.crossOrigin = "anonymous";
-      const framePath = currentFrame(i);
-      img.src = framePath;
-      
-      img.onload = () => {
+      img.src = currentFrame(i);
+
+      const onDone = () => {
         loadedCount++;
-        if (loadedCount + failedCount === FRAME_COUNT) {
-          // Draw the first frame once all are loaded (or failed)
-          if (canvasRef.current) {
-             const ctx = canvasRef.current.getContext("2d");
-             if (ctx && loadedImages[0]) renderFrame(0, ctx, loadedImages);
-          }
-        }
+        setLoadProgress(Math.round((loadedCount / FRAME_COUNT) * 100));
+        if (loadedCount === FRAME_COUNT) finish();
       };
-      
-      img.onerror = () => {
-        failedCount++;
-        console.warn(`Failed to load frame: ${framePath}`);
-        if (loadedCount + failedCount === FRAME_COUNT) {
-          if (canvasRef.current) {
-             const ctx = canvasRef.current.getContext("2d");
-             if (ctx && loadedImages[0]) renderFrame(0, ctx, loadedImages);
-          }
-        }
-      };
-      
-      loadedImages.push(img);
+
+      img.onload = onDone;
+      img.onerror = onDone;
+      loadedImages[i] = img;
     }
-    setImages(loadedImages);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
-  const renderFrame = (index: number, ctx: CanvasRenderingContext2D, imgs = images) => {
+  const renderFrame = (
+    index: number,
+    ctx: CanvasRenderingContext2D,
+    imgs = images
+  ) => {
     if (!imgs[index] || !canvasRef.current) return;
     const img = imgs[index];
     const canvas = canvasRef.current;
-    
-    // object-fit: cover logic for canvas
+
     const hRatio = canvas.width / img.width;
     const vRatio = canvas.height / img.height;
     const ratio = Math.max(hRatio, vRatio);
     const centerShift_x = (canvas.width - img.width * ratio) / 2;
     const centerShift_y = (canvas.height - img.height * ratio) / 2;
-    
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(
-      img, 
-      0, 0, img.width, img.height,
-      centerShift_x, centerShift_y, img.width * ratio, img.height * ratio
+      img,
+      0,
+      0,
+      img.width,
+      img.height,
+      centerShift_x,
+      centerShift_y,
+      img.width * ratio,
+      img.height * ratio
     );
   };
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    if (images.length === 0) return;
+    if (!isReady) return;
     const frameIndex = Math.min(
       FRAME_COUNT - 1,
       Math.max(0, Math.floor(latest * FRAME_COUNT))
     );
-    
+
     if (canvasRef.current) {
       const ctx = canvasRef.current.getContext("2d");
       if (ctx) renderFrame(frameIndex, ctx);
     }
   });
 
-  // Handle window resize
   useEffect(() => {
     const handleResize = () => {
       if (canvasRef.current) {
@@ -109,17 +115,39 @@ export default function ScrollyCanvas() {
         }
       }
     };
-    
+
     window.addEventListener("resize", handleResize);
-    handleResize(); // Initial sizing
-    
+    handleResize();
+
     return () => window.removeEventListener("resize", handleResize);
-  }, [images, scrollYProgress]);
+  }, [images, scrollYProgress, isReady]);
 
   return (
     <div ref={containerRef} className="relative h-[500vh] w-full bg-[#121212] pt-16">
       <div className="sticky top-16 h-screen w-full overflow-hidden">
-        <canvas ref={canvasRef} className="h-full w-full block" />
+        <canvas
+          ref={canvasRef}
+          className={`h-full w-full block transition-opacity duration-700 ${
+            isReady ? "opacity-100" : "opacity-0"
+          }`}
+        />
+
+        {!isReady && (
+          <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-[#121212]">
+            <div className="w-48 h-1 rounded-full bg-white/10 overflow-hidden">
+              <motion.div
+                className="h-full bg-white/70 rounded-full"
+                initial={{ width: 0 }}
+                animate={{ width: `${loadProgress}%` }}
+                transition={{ ease: "easeOut" }}
+              />
+            </div>
+            <p className="text-xs font-mono text-gray-500 uppercase tracking-widest">
+              Loading experience {loadProgress}%
+            </p>
+          </div>
+        )}
+
         <Overlay scrollProgress={scrollYProgress} />
       </div>
     </div>

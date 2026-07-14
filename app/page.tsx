@@ -1,33 +1,24 @@
 import ScrollyCanvas from "@/components/ScrollyCanvas";
+import About from "@/components/About";
+import Education from "@/components/Education";
+import Extracurricular from "@/components/Extracurricular";
 import Projects from "@/components/Projects";
 import Experience from "@/components/Experience";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import ScrollProgress from "@/components/ScrollProgress";
 
 export default function Home() {
   return (
     <main className="bg-[#121212] min-h-screen text-white font-sans selection:bg-white selection:text-black">
-      {/* Header with navigation and social links */}
+      <ScrollProgress />
       <Header />
-
-      {/* 
-        ScrollyCanvas contains the 500vh scroll section and the sticky canvas + overlay 
-      */}
       <ScrollyCanvas />
-      
-      {/* 
-        Projects section appears after the 500vh scrolling finishes
-      */}
+      <About />
+      <Education />
       <Projects />
-
-      {/*
-        Experience and Skills section
-      */}
       <Experience />
-
-      {/*
-        Footer with contact information and social links
-      */}
+      <Extracurricular />
       <Footer />
     </main>
   );
