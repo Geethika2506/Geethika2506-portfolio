@@ -6,7 +6,9 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
 
 concurrency:
   group: pages
@@ -15,6 +17,12 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    env:
+      GITHUB_PAGES: "true"
+      NEXT_PUBLIC_SITE_URL: https://geethika2506.github.io/Geethika2506-portfolio
     steps:
       - uses: actions/checkout@v4
 
@@ -27,13 +35,18 @@ jobs:
         with:
           python-version: "3.12"
 
-      - run: pip install Pillow
-      - run: python3 scripts/optimize-assets.py
-      - run: npm ci
-      - run: GITHUB_PAGES=true npm run build
+      - name: Build site
+        run: |
+          pip install Pillow
+          python3 scripts/optimize-assets.py
+          npm ci
+          npm run build
 
-      - uses: peaceiris/actions-gh-pages@v4
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./out
-          keep_files: false
+          path: out
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

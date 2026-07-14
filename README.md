@@ -28,7 +28,7 @@ npm run optimize-assets
 1. Push to the `main` branch on GitHub.
 2. Go to **Settings → Pages → Build and deployment**.
 3. Set **Source** to **GitHub Actions**.
-4. The workflow in `.github/workflows/deploy.yml` builds and deploys automatically.
+4. Push to `main` — the workflow builds and deploys automatically.
 
 Your site will be live at:
 
