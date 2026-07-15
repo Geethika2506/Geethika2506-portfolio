@@ -9,6 +9,7 @@ import {
   StaggerGrid,
   StaggerItem,
 } from "@/components/motion/AnimatedSection";
+import { assetPath } from "@/lib/site";
 
 type Activity = {
   title: string;
@@ -68,7 +69,7 @@ function ActivityCard({
       <div className="absolute inset-0">
         {hasImage ? (
           <Image
-            src={image}
+            src={assetPath(image)}
             alt={title}
             fill
             className="object-cover transition-transform duration-700 group-hover:scale-105"

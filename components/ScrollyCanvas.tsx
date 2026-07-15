@@ -3,11 +3,12 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import Overlay from "./Overlay";
+import { assetPath } from "@/lib/site";
 
 const FRAME_COUNT = 60;
 
 const currentFrame = (index: number) =>
-  `/sequence-lite/frame_${index.toString().padStart(3, "0")}.webp`;
+  assetPath(`/sequence-lite/frame_${index.toString().padStart(3, "0")}.webp`);
 
 export default function ScrollyCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
