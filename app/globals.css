@@ -1,13 +1,25 @@
 @import "tailwindcss";
 
 :root {
-  --background: #121212;
-  --foreground: #ffffff;
+  --background: #0a0612;
+  --foreground: #e8e0f0;
+  --cyber-bg: #0a0612;
+  --cyber-purple: #1a0a2e;
+  --cyber-purple-mid: #2d1b4e;
+  --cyber-blue: #00d4ff;
+  --cyber-violet: #7c3aed;
+  --cyber-neon: #bf00ff;
+  --cyber-emerald: #00ff88;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-cyber-bg: var(--cyber-bg);
+  --color-cyber-purple: var(--cyber-purple);
+  --color-cyber-blue: var(--cyber-blue);
+  --color-cyber-violet: var(--cyber-violet);
+  --color-cyber-neon: var(--cyber-neon);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -24,17 +36,53 @@ body {
 }
 
 ::selection {
-  background: #ffffff;
-  color: #000000;
+  background: rgba(0, 212, 255, 0.35);
+  color: #ffffff;
 }
 
 :focus-visible {
-  outline: 2px solid #ffffff;
+  outline: 2px solid var(--cyber-blue);
   outline-offset: 2px;
 }
 
 a, button {
   -webkit-tap-highlight-color: transparent;
+}
+
+/* Cyberpunk grid overlay */
+.cyber-grid {
+  background-image:
+    linear-gradient(rgba(124, 58, 237, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 212, 255, 0.06) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Subtle CRT scanlines */
+.scanlines {
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.15) 2px,
+    rgba(0, 0, 0, 0.15) 4px
+  );
+}
+
+.neon-text {
+  text-shadow:
+    0 0 20px rgba(0, 212, 255, 0.3),
+    0 0 40px rgba(191, 0, 255, 0.15);
+}
+
+.cyber-card {
+  border: 1px solid rgba(124, 58, 237, 0.25);
+  background: linear-gradient(135deg, rgba(26, 10, 46, 0.6) 0%, rgba(10, 6, 18, 0.8) 100%);
+  backdrop-filter: blur(12px);
+}
+
+.cyber-section {
+  background: var(--cyber-bg);
+  border-top: 1px solid rgba(124, 58, 237, 0.2);
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -17,10 +17,14 @@ export const currentWork = [
     category: "Knowledge Graph · AI Research",
     description:
       "Transforms unstructured news into a temporal Neo4j graph with GPT extraction, entity resolution, Wikidata linking, and MCP-based querying.",
+    highlight: "Temporal graph pipeline with MCP natural-language querying",
     year: "2026",
     icon: Network,
     inProgress: true,
     caseStudy: "/projects/atlas",
+    level: 1,
+    progress: 72,
+    unlocked: true,
   },
   {
     title: "Mercurio",
@@ -28,9 +32,13 @@ export const currentWork = [
     category: "Agentic AI · Reporting",
     description:
       "Conversational app that turns natural-language briefs into traceable HTML reports via multi-agent planning and quality validation.",
+    highlight: "Multi-agent planning with traceable executive reports",
     year: "2026",
     icon: FileText,
     inProgress: true,
+    level: 2,
+    progress: 58,
+    unlocked: true,
   },
   {
     title: "Cerberos",
@@ -38,9 +46,13 @@ export const currentWork = [
     category: "Private Equity · LLM Workflow",
     description:
       "PE workflow for teaser intake, NDA-gated screening, company matching, and Mercurio-powered research across the deal lifecycle.",
+    highlight: "End-to-end PE dealflow from teaser to thesis",
     year: "2026",
     icon: Briefcase,
     inProgress: true,
+    level: 3,
+    progress: 45,
+    unlocked: true,
   },
   {
     title: "Aegis",
@@ -48,9 +60,13 @@ export const currentWork = [
     category: "Decision Intelligence",
     description:
       "Structured decision proposals with AI-generated committee checklists, post-mortem learning, and Decision Quality Score metrics.",
+    highlight: "Decision Quality Score metrics for executive committees",
     year: "2026",
     icon: Scale,
     inProgress: true,
+    level: 4,
+    progress: 38,
+    unlocked: true,
   },
   {
     title: "Equity Curve Lifecycle",
@@ -58,9 +74,13 @@ export const currentWork = [
     category: "Quantitative Trading · Data Engineering",
     description:
       "Versioning system for strategy equity curves with Beta / Prod / Deprecated / Retired states and full change traceability.",
+    highlight: "Full lifecycle governance for trading strategy curves",
     year: "2026",
     icon: TrendingUp,
     inProgress: true,
+    level: 5,
+    progress: 52,
+    unlocked: true,
   },
 ];
 
@@ -123,4 +143,9 @@ export type ProjectItem = {
   liveDemo?: string;
   inProgress?: boolean;
   caseStudy?: string;
+  level?: number;
+  progress?: number;
+  unlocked?: boolean;
+  trailerUrl?: string;
+  trailerPoster?: string;
 };

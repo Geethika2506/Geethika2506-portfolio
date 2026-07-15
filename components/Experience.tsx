@@ -98,7 +98,7 @@ export default function Experience() {
   return (
     <section
       id="experience"
-      className="bg-[#121212] text-white py-24 px-6 md:px-12 lg:px-24 border-t border-white/10"
+      className="cyber-section text-white py-24 px-6 md:px-12 lg:px-24"
     >
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
         <div>
@@ -111,7 +111,7 @@ export default function Experience() {
           <div className="space-y-12">
             {experiences.map((exp, idx) => (
               <AnimatedSection key={exp.role + exp.company} delay={idx * 0.06}>
-                <div className="relative pl-6 border-l border-white/20 group">
+                <div className="relative pl-6 border-l border-violet-500/30 group">
                   <motion.div
                     initial={{ scale: 0 }}
                     whileInView={{ scale: 1 }}
@@ -119,13 +119,13 @@ export default function Experience() {
                     transition={{ delay: 0.1 + idx * 0.05, type: "spring", stiffness: 320, damping: 20 }}
                     className={`absolute w-3 h-3 rounded-full -left-[6.5px] top-2 ${
                       idx === 0
-                        ? "bg-white shadow-[0_0_12px_rgba(255,255,255,0.8)]"
-                        : "bg-white/80"
+                        ? "bg-cyan-400 shadow-[0_0_12px_rgba(0,212,255,0.8)]"
+                        : "bg-violet-400/80"
                     }`}
                   />
                   {idx === 0 && (
                     <motion.div
-                      className="absolute w-3 h-3 rounded-full -left-[6.5px] top-2 bg-white"
+                      className="absolute w-3 h-3 rounded-full -left-[6.5px] top-2 bg-cyan-400"
                       animate={{ scale: [1, 2.2, 1], opacity: [0.6, 0, 0.6] }}
                       transition={{ repeat: Infinity, duration: 2.4 }}
                     />
@@ -133,13 +133,13 @@ export default function Experience() {
                   <h3 className="text-2xl font-semibold group-hover:text-white transition-colors">
                     {exp.role}
                   </h3>
-                  <p className="text-lg text-gray-300 mt-1">
+                  <p className="text-lg text-violet-200/80 mt-1">
                     {exp.company} — {exp.location}
                   </p>
-                  <p className="text-sm font-mono text-gray-500 mt-2 mb-4 uppercase tracking-wider">
+                  <p className="text-sm font-mono text-violet-400/60 mt-2 mb-4 uppercase tracking-wider">
                     {exp.date}
                   </p>
-                  <p className="text-gray-400 leading-relaxed">{exp.description}</p>
+                  <p className="text-violet-200/60 leading-relaxed">{exp.description}</p>
                   {"projects" in exp && exp.projects && (
                     <ul className="mt-5 space-y-3">
                       {exp.projects.map((project, pIdx) => (
@@ -149,13 +149,13 @@ export default function Experience() {
                           whileInView={{ opacity: 1, x: 0 }}
                           viewport={{ once: true }}
                           transition={{ delay: 0.08 + pIdx * 0.05 }}
-                          whileHover={{ x: 6, borderColor: "rgba(255,255,255,0.22)" }}
-                          className="rounded-xl border border-white/10 bg-white/[0.03] p-4 transition-colors hover:bg-white/[0.06] cursor-default"
+                          whileHover={{ x: 6, borderColor: "rgba(0,212,255,0.35)" }}
+                          className="rounded-xl cyber-card p-4 transition-colors hover:bg-violet-950/40 cursor-default"
                         >
                           <p className="text-sm font-semibold text-white">
                             {project.name}
                           </p>
-                          <p className="mt-1.5 text-sm text-gray-400 leading-relaxed">
+                          <p className="mt-1.5 text-sm text-violet-200/60 leading-relaxed">
                             {project.description}
                           </p>
                         </motion.li>
@@ -181,12 +181,12 @@ export default function Experience() {
                 <motion.span
                   whileHover={{
                     scale: 1.06,
-                    backgroundColor: "rgba(255,255,255,0.12)",
-                    borderColor: "rgba(255,255,255,0.25)",
-                    color: "#ffffff",
+                    backgroundColor: "rgba(0, 212, 255, 0.12)",
+                    borderColor: "rgba(0, 212, 255, 0.35)",
+                    color: "#67e8f9",
                   }}
                   whileTap={{ scale: 0.97 }}
-                  className="inline-block px-5 py-3 rounded-full bg-white/5 border border-white/10 text-gray-300 text-sm font-medium cursor-default"
+                  className="inline-block px-5 py-3 rounded-lg bg-violet-950/40 border border-violet-500/25 text-violet-200/80 text-sm font-medium cursor-default"
                 >
                   {skill}
                 </motion.span>

@@ -1,4 +1,4 @@
-import ScrollyCanvas from "@/components/ScrollyCanvas";
+import CyberHero from "@/components/CyberHero";
 import About from "@/components/About";
 import Education from "@/components/Education";
 import Extracurricular from "@/components/Extracurricular";
@@ -10,10 +10,10 @@ import ScrollProgress from "@/components/ScrollProgress";
 
 export default function Home() {
   return (
-    <main className="bg-[#121212] min-h-screen text-white font-sans selection:bg-white selection:text-black">
+    <main className="bg-cyber-bg min-h-screen text-white font-sans selection:bg-cyan-400/30 selection:text-white">
       <ScrollProgress />
       <Header />
-      <ScrollyCanvas />
+      <CyberHero />
       <About />
       <Education />
       <Projects />

@@ -64,7 +64,7 @@ function ActivityCard({
   return (
     <motion.article
       whileHover={{ y: -4 }}
-      className="group relative h-[320px] w-full overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03]"
+      className="group relative h-[320px] w-full overflow-hidden rounded-xl border border-violet-500/25 bg-violet-950/20 cyber-card"
     >
       <div className="absolute inset-0">
         {hasImage ? (
@@ -84,8 +84,8 @@ function ActivityCard({
       </div>
 
       <div className="relative z-10 flex h-full flex-col justify-end p-6">
-        <div className="mb-3 w-10 h-10 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center backdrop-blur-sm">
-          <Icon className="w-5 h-5 text-white/80" />
+        <div className="mb-3 w-10 h-10 rounded-lg bg-cyan-400/10 border border-cyan-400/30 flex items-center justify-center backdrop-blur-sm">
+          <Icon className="w-5 h-5 text-cyan-300" />
         </div>
         <h3 className="text-xl font-semibold text-white">{title}</h3>
         <p className="mt-2 text-sm text-gray-300 leading-relaxed line-clamp-2">
@@ -100,17 +100,17 @@ export default function Extracurricular() {
   return (
     <section
       id="interests"
-      className="bg-[#121212] text-white py-24 px-6 md:px-12 lg:px-24 border-t border-white/10"
+      className="cyber-section text-white py-24 px-6 md:px-12 lg:px-24"
     >
       <div className="max-w-7xl mx-auto">
         <AnimatedSection className="mb-12">
-          <p className="text-xs font-mono uppercase tracking-[0.2em] text-gray-500 mb-4">
+          <p className="text-xs font-mono uppercase tracking-[0.2em] text-cyan-400/70 mb-4">
             Beyond code
           </p>
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
             Extracurricular Activities
           </h2>
-          <p className="text-gray-400 max-w-2xl">
+          <p className="text-violet-200/60 max-w-2xl">
             Sports, travel, art, and the IE entrepreneurship community — how I
             recharge and stay inspired.
           </p>
