@@ -50,6 +50,7 @@ const personalActivities: Activity[] = [
       "IE startup ecosystem — panels, founders, and building with impact.",
     image: "/interests/entrepreneurship.png",
     icon: Mic2,
+    imagePosition: "50% 35%",
   },
 ];
 
