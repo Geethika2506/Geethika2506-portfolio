@@ -25,8 +25,9 @@ export default function Footer() {
           <AnimatedSection>
             <h3 className="text-2xl font-bold mb-3 text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-violet-300">Geethika</h3>
             <p className="text-violet-200/60 leading-relaxed">
-              AI & Full-Stack Developer passionate about building intelligent
-              solutions and scalable applications.
+              Ambitious CS & AI student applying algorithms, AI technologies, and
+              ML engineering principles to build intelligent, production-ready
+              systems.
             </p>
           </AnimatedSection>
 
@@ -83,7 +84,7 @@ export default function Footer() {
                   whileHover={{ x: 4, color: "#67e8f9" }}
                   className="inline-block transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white rounded-sm"
                 >
-                  linkedin.com/in/geethikareddykonda
+                  LinkedIn
                 </motion.a>
               </p>
               <p className="text-violet-200/60">

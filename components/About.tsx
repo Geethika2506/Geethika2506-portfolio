@@ -17,25 +17,18 @@ export default function About() {
             About
           </p>
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
-            Building intelligent systems that scale
+            Engineering AI that ships
           </h2>
           <div className="space-y-4 text-violet-200/60 leading-relaxed">
             <p>
-              I&apos;m a Computer Science & AI student at{" "}
-              <strong className="text-cyan-200/90">IE University</strong> in Madrid,
-              focused on knowledge graphs, agentic AI, and production-grade
-              software engineering.
+              Ambitious Computer Science and Artificial Intelligence student with
+              a growth mindset and hands-on experience in real-time application
+              development.
             </p>
             <p>
-              As an <strong className="text-cyan-200/90">AI Research Intern at Whitehole</strong>,
-              I work across Atlas Core, Mercurio, Cerberos, Aegis, and quantitative
-              trading infrastructure — bridging research prototypes and real
-              deployments.
-            </p>
-            <p>
-              I&apos;m looking for{" "}
-              <strong className="text-cyan-200/90">software engineering roles</strong>{" "}
-              where I can ship systems that are rigorous, traceable, and useful.
+              I apply algorithms, AI technologies, and ML engineering principles
+              to build intelligent, production-ready systems in collaborative
+              teams.
             </p>
           </div>
         </AnimatedSection>
@@ -49,7 +42,7 @@ export default function About() {
               <div>
                 <h3 className="font-semibold text-white mb-1">Target roles</h3>
                 <p className="text-sm text-violet-200/60">
-                  AI/ML Engineer · FDE · Software Engineering · Full Stack
+                  AI/ML Engineer · Machine Learning · Deep Learning · MLOps
                 </p>
               </div>
             </div>

@@ -3,17 +3,12 @@
 import { type MouseEvent } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import { ArrowUpRight, Code2 } from "lucide-react";
-import LevelCaseStudy from "@/components/LevelCaseStudy";
 import {
   AnimatedSection,
   StaggerGrid,
   StaggerItem,
 } from "@/components/motion/AnimatedSection";
-import {
-  currentWork,
-  featuredProjects,
-  type ProjectItem,
-} from "@/lib/projects";
+import { featuredProjects, type ProjectItem } from "@/lib/projects";
 import { siteConfig } from "@/lib/site";
 
 function BonusProjectCard({ project }: { project: ProjectItem }) {
@@ -122,25 +117,6 @@ export default function Projects() {
       className="min-h-screen cyber-section text-white py-24 px-6 md:px-12 lg:px-24"
     >
       <div className="max-w-7xl mx-auto">
-        <AnimatedSection className="mb-16">
-          <p className="text-xs font-mono uppercase tracking-[0.2em] text-cyan-400/70 mb-4">
-            Mission Select
-          </p>
-          <h2 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 neon-text">
-            Active Missions
-          </h2>
-          <p className="text-xl text-violet-200/60 max-w-2xl">
-            Whitehole research & engineering — click a level to unlock the trailer
-            and mission briefing.
-          </p>
-        </AnimatedSection>
-
-        <div className="space-y-4 mb-24">
-          {currentWork.map((project, i) => (
-            <LevelCaseStudy key={project.title} project={project} index={i} />
-          ))}
-        </div>
-
         <AnimatedSection className="mb-16">
           <p className="text-xs font-mono uppercase tracking-[0.2em] text-violet-400/70 mb-4">
             Bonus Levels

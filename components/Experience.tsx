@@ -103,7 +103,10 @@ export default function Experience() {
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
         <div>
           <AnimatedSection>
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-12">
+            <p className="font-terminal mb-4 text-xs uppercase tracking-[0.2em] text-cyan-400/70">
+              Mission Log
+            </p>
+            <h2 className="font-display mb-12 text-4xl font-bold uppercase tracking-tight text-white md:text-5xl">
               Experience
             </h2>
           </AnimatedSection>

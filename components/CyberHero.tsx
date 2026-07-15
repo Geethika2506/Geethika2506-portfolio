@@ -1,124 +1,111 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Download, Radio } from "lucide-react";
+import { ArrowRight, Cpu, Network } from "lucide-react";
+import HeroMediaFrame from "@/components/HeroMediaFrame";
 import ParticleField from "@/components/ParticleField";
 import { siteConfig } from "@/lib/site";
 
-const words = "Geethika Reddy Konda".split(" ");
+const featureCards = [
+  {
+    icon: Cpu,
+    label: "Machine Learning",
+    sub: "Models & pipelines",
+    accent: "text-cyan-400",
+    border: "border-cyan-400/20",
+    bg: "bg-cyan-400/5",
+  },
+  {
+    icon: Network,
+    label: "AI Systems",
+    sub: "LLMs & intelligent apps",
+    accent: "text-violet-400",
+    border: "border-violet-500/20",
+    bg: "bg-violet-500/5",
+  },
+];
 
 export default function CyberHero() {
   return (
     <section
       id="hero"
-      className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-cyber-bg pt-16"
+      className="relative flex min-h-screen w-full items-center overflow-hidden bg-black pt-20"
     >
-      <div className="absolute inset-0 bg-gradient-to-b from-[#12082a]/80 via-[#0a0612] to-[#0a0612]" />
-      <div className="cyber-grid absolute inset-0 opacity-40" />
       <ParticleField />
-      <div className="scanlines pointer-events-none absolute inset-0 opacity-[0.04]" />
+      <div className="cyber-grid absolute inset-0 opacity-20" />
+      <div className="scanlines pointer-events-none absolute inset-0 opacity-[0.03]" />
 
-      {/* HUD corners */}
-      <div className="pointer-events-none absolute inset-6 md:inset-10">
-        <div className="absolute left-0 top-0 h-12 w-12 border-l-2 border-t-2 border-cyan-400/50" />
-        <div className="absolute right-0 top-0 h-12 w-12 border-r-2 border-t-2 border-cyan-400/50" />
-        <div className="absolute bottom-0 left-0 h-12 w-12 border-b-2 border-l-2 border-violet-500/50" />
-        <div className="absolute bottom-0 right-0 h-12 w-12 border-b-2 border-r-2 border-violet-500/50" />
-      </div>
-
-      <div className="relative z-10 mx-auto max-w-5xl px-6 text-center">
+      <div className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-12 px-6 py-12 md:px-12 lg:grid-cols-2 lg:gap-16 lg:px-24 lg:py-20">
+        {/* Left — video frame */}
         <motion.div
-          initial={{ opacity: 0, y: -8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="mb-6 inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-400/5 px-4 py-1.5 font-mono text-[10px] uppercase tracking-[0.25em] text-cyan-300/90"
+          initial={{ opacity: 0, x: -32 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="order-2 lg:order-1"
         >
-          <Radio className="h-3 w-3 animate-pulse text-cyan-400" />
-          Command Center · Online
+          <HeroMediaFrame videoSrc={siteConfig.heroVideo} />
         </motion.div>
 
-        <h1 className="mb-4 flex flex-wrap justify-center gap-x-3 gap-y-1 text-4xl font-bold tracking-tighter md:text-7xl">
-          {words.map((word, i) => (
-            <motion.span
-              key={word + i}
-              initial={{ opacity: 0, y: 28 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                delay: 0.15 + i * 0.08,
-                duration: 0.55,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-              className="neon-text bg-gradient-to-b from-white via-cyan-100 to-violet-300 bg-clip-text text-transparent"
-            >
-              {word}
-            </motion.span>
-          ))}
-        </h1>
-
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.55, duration: 0.5 }}
-          className="text-lg font-light tracking-wide text-violet-200/80 md:text-2xl"
+        {/* Right — copy */}
+        <motion.div
+          initial={{ opacity: 0, x: 32 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+          className="order-1 lg:order-2"
         >
-          CS & AI · IE University · Whitehole
-        </motion.p>
+          <p className="font-terminal text-sm tracking-wide text-cyan-400">
+            <span className="text-cyan-500/70">&gt;_</span> IDENTITY VERIFIED
+          </p>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.65, duration: 0.5 }}
-          className="mx-auto mt-4 max-w-xl text-sm text-violet-300/60 md:text-base"
-        >
-          AI/ML Engineer · FDE · Software Engineering · Full Stack
-        </motion.p>
+          <h1 className="font-display mt-4 text-4xl font-bold uppercase leading-[0.95] tracking-tight text-white sm:text-5xl md:text-6xl lg:text-[3.4rem]">
+            Crafting Digital
+            <br />
+            <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-violet-500 bg-clip-text text-transparent">
+              Realities
+            </span>
+          </h1>
 
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-          <motion.a
-            href="#projects"
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.75, duration: 0.45 }}
-            whileHover={{ scale: 1.03, boxShadow: "0 0 24px rgba(0,212,255,0.35)" }}
-            className="inline-flex items-center gap-2 rounded-lg border border-cyan-400/50 bg-cyan-400/10 px-6 py-3 text-sm font-semibold text-cyan-100 backdrop-blur-sm transition-colors hover:border-cyan-300 hover:bg-cyan-400/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
-          >
-            Unlock missions
-            <motion.span
-              animate={{ y: [0, 4, 0] }}
-              transition={{ repeat: Infinity, duration: 1.4, ease: "easeInOut" }}
-            >
-              ↓
-            </motion.span>
-          </motion.a>
+          <p className="mt-6 max-w-lg text-base leading-relaxed text-gray-400 md:text-lg">
+            Ambitious Computer Science and Artificial Intelligence student with
+            a growth mindset and hands-on experience in real-time application
+            development. I apply algorithms, AI technologies, and ML engineering
+            principles to build intelligent, production-ready systems in
+            collaborative teams.
+          </p>
+
+          <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {featureCards.map((card, i) => {
+              const Icon = card.icon;
+              return (
+                <motion.div
+                  key={card.label}
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 + i * 0.1 }}
+                  className={`rounded-lg border ${card.border} ${card.bg} p-4 backdrop-blur-sm`}
+                >
+                  <Icon className={`mb-3 h-5 w-5 ${card.accent}`} />
+                  <p className="font-terminal text-xs font-semibold uppercase tracking-wider text-white">
+                    {card.label}
+                  </p>
+                  <p className="mt-1 text-xs text-gray-500">{card.sub}</p>
+                </motion.div>
+              );
+            })}
+          </div>
+
           <motion.a
             href={siteConfig.resumePath}
             download
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.85, duration: 0.45 }}
-            whileHover={{ scale: 1.03 }}
-            className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-violet-600 to-cyan-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-violet-500/25 transition-shadow hover:shadow-cyan-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.65 }}
+            whileHover={{ x: 4 }}
+            className="font-terminal mt-10 inline-flex items-center gap-2 text-sm uppercase tracking-widest text-cyan-400 transition-colors hover:text-cyan-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
           >
-            <Download className="h-4 w-4" />
-            Download dossier
+            Download Full Dossier
+            <ArrowRight className="h-4 w-4" />
           </motion.a>
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.1 }}
-          className="mt-16 flex flex-col items-center gap-2"
-        >
-          <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-violet-400/50">
-            Move cursor to interact
-          </span>
-          <motion.div
-            className="h-10 w-px bg-gradient-to-b from-cyan-400/60 to-transparent"
-            animate={{ scaleY: [1, 0.4, 1], opacity: [0.5, 1, 0.5] }}
-            transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut" }}
-            style={{ originY: 0 }}
-          />
         </motion.div>
       </div>
     </section>

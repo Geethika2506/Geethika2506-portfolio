@@ -16,8 +16,8 @@ export default function Home() {
       <CyberHero />
       <About />
       <Education />
-      <Projects />
       <Experience />
+      <Projects />
       <Extracurricular />
       <Footer />
     </main>

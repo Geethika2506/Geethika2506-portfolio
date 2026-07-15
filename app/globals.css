@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0a0612;
+  --background: #000000;
   --foreground: #e8e0f0;
-  --cyber-bg: #0a0612;
+  --cyber-bg: #000000;
   --cyber-purple: #1a0a2e;
   --cyber-purple-mid: #2d1b4e;
   --cyber-blue: #00d4ff;
@@ -21,13 +21,21 @@
   --color-cyber-violet: var(--cyber-violet);
   --color-cyber-neon: var(--cyber-neon);
   --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-mono: var(--font-terminal);
+}
+
+.font-display {
+  font-family: var(--font-display), var(--font-geist-sans), sans-serif;
+}
+
+.font-terminal {
+  font-family: var(--font-terminal), var(--font-geist-mono), monospace;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
   margin: 0;
   padding: 0;
   overflow-x: hidden;

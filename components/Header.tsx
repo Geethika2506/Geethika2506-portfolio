@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Code2, Users, Mail, Menu, X, Download } from "lucide-react";
+import { Code2, Users, Mail, Menu, X, Hexagon } from "lucide-react";
 import { useActiveSection } from "@/hooks/useActiveSection";
 import { navSections, siteConfig } from "@/lib/site";
 
@@ -28,16 +28,11 @@ function NavLink({
       href={href}
       onClick={onClick}
       aria-current={active ? "page" : undefined}
-      className={`group relative text-sm font-medium py-1 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 rounded-sm ${
-        active ? "text-cyan-300" : "text-violet-200/70 hover:text-cyan-200"
+      className={`font-terminal text-xs uppercase tracking-[0.15em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 rounded-sm ${
+        active ? "text-cyan-400" : "text-gray-400 hover:text-cyan-300"
       }`}
     >
       {label}
-      <span
-        className={`absolute -bottom-0.5 left-0 h-px bg-gradient-to-r from-cyan-400 to-violet-500 transition-all duration-300 ${
-          active ? "w-full" : "w-0 group-hover:w-full"
-        }`}
-      />
     </a>
   );
 }
@@ -69,22 +64,25 @@ export default function Header() {
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         className={`fixed top-0 left-0 right-0 z-50 border-b transition-colors duration-300 ${
           scrolled
-            ? "bg-[#0a0612]/95 backdrop-blur-xl border-violet-500/25 shadow-lg shadow-violet-950/40"
-            : "bg-[#0a0612]/70 backdrop-blur-md border-violet-500/15"
+            ? "border-violet-500/20 bg-black/90 backdrop-blur-xl"
+            : "border-transparent bg-black/40 backdrop-blur-md"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 py-4 flex justify-between items-center gap-4">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-4 md:px-12 lg:px-24">
           <motion.a
             href="#"
-            whileHover={{ scale: 1.03 }}
+            whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-violet-300 hover:from-cyan-200 hover:to-violet-200 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 rounded-sm"
+            className="flex items-center gap-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 rounded-sm"
           >
-            Geethika
+            <Hexagon className="h-5 w-5 fill-cyan-400/20 text-cyan-400" strokeWidth={1.5} />
+            <span className="font-display text-sm font-bold uppercase tracking-[0.12em] text-white md:text-base">
+              Geethika
+            </span>
           </motion.a>
 
-          <div className="hidden lg:flex items-center gap-6">
-            <nav className="flex gap-6" aria-label="Main">
+          <div className="hidden items-center gap-8 lg:flex">
+            <nav className="flex gap-8" aria-label="Main">
               {navSections.map((link) => (
                 <NavLink
                   key={link.id}
@@ -96,33 +94,13 @@ export default function Header() {
             </nav>
 
             <a
-              href={siteConfig.resumePath}
-              download
-              className="inline-flex items-center gap-1.5 rounded-lg border border-cyan-400/40 px-4 py-1.5 text-xs font-semibold text-cyan-100 hover:bg-cyan-400/15 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
+              href={siteConfig.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-terminal rounded border border-cyan-400/50 px-5 py-2 text-xs uppercase tracking-[0.15em] text-cyan-400 transition-colors hover:bg-cyan-400/10 hover:text-cyan-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
             >
-              <Download className="w-3.5 h-3.5" />
-              Resume
+              Connect
             </a>
-
-            <div className="flex gap-4 pl-4 border-l border-violet-500/20">
-              {socialLinks.map((link) => {
-                const Icon = link.icon;
-                return (
-                  <motion.a
-                    key={link.label}
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={link.label}
-                    whileHover={{ scale: 1.12, y: -2 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="text-violet-400 hover:text-cyan-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 rounded-sm"
-                  >
-                    <Icon className="w-5 h-5" />
-                  </motion.a>
-                );
-              })}
-            </div>
           </div>
 
           <motion.button
@@ -131,9 +109,9 @@ export default function Header() {
             aria-expanded={menuOpen}
             whileTap={{ scale: 0.92 }}
             onClick={() => setMenuOpen((open) => !open)}
-            className="lg:hidden text-violet-300 hover:text-cyan-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 rounded-sm"
+            className="text-gray-400 transition-colors hover:text-cyan-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 lg:hidden"
           >
-            {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </motion.button>
         </div>
       </motion.header>
@@ -144,7 +122,7 @@ export default function Header() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm lg:hidden"
+            className="fixed inset-0 z-40 bg-black/70 backdrop-blur-sm lg:hidden"
             onClick={() => setMenuOpen(false)}
           >
             <motion.nav
@@ -154,7 +132,7 @@ export default function Header() {
               transition={{ type: "spring", stiffness: 320, damping: 32 }}
               onClick={(e) => e.stopPropagation()}
               aria-label="Mobile"
-              className="absolute right-0 top-0 h-full w-[min(88vw,320px)] bg-[#0a0612] border-l border-violet-500/25 p-8 pt-24 flex flex-col gap-8"
+              className="absolute right-0 top-0 flex h-full w-[min(88vw,320px)] flex-col gap-8 border-l border-violet-500/25 bg-black p-8 pt-24"
             >
               <div className="flex flex-col gap-5">
                 {navSections.map((link, i) => (
@@ -165,8 +143,8 @@ export default function Header() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.05 + i * 0.06 }}
                     onClick={() => setMenuOpen(false)}
-                    className={`text-2xl font-medium transition-colors ${
-                      active === link.id ? "text-cyan-300" : "text-violet-200 hover:text-cyan-200"
+                    className={`font-terminal text-lg uppercase tracking-wider transition-colors ${
+                      active === link.id ? "text-cyan-400" : "text-gray-300 hover:text-cyan-300"
                     }`}
                   >
                     {link.label}
@@ -175,16 +153,16 @@ export default function Header() {
               </div>
 
               <a
-                href={siteConfig.resumePath}
-                download
+                href={siteConfig.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={() => setMenuOpen(false)}
-                className="inline-flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-violet-600 to-cyan-500 text-white px-5 py-3 text-sm font-semibold"
+                className="font-terminal inline-flex items-center justify-center rounded border border-cyan-400/50 px-5 py-3 text-sm uppercase tracking-wider text-cyan-400"
               >
-                <Download className="w-4 h-4" />
-                Download Resume
+                Connect
               </a>
 
-              <div className="flex gap-5 pt-4 border-t border-violet-500/20">
+              <div className="flex gap-5 border-t border-violet-500/20 pt-4">
                 {socialLinks.map((link, i) => {
                   const Icon = link.icon;
                   return (
@@ -198,9 +176,9 @@ export default function Header() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.2 + i * 0.05 }}
                       whileHover={{ scale: 1.1 }}
-                      className="w-11 h-11 rounded-lg border border-violet-500/30 flex items-center justify-center text-violet-300 hover:text-cyan-300 hover:border-cyan-400/40 transition-colors"
+                      className="flex h-11 w-11 items-center justify-center rounded-lg border border-violet-500/30 text-violet-300 transition-colors hover:border-cyan-400/40 hover:text-cyan-300"
                     >
-                      <Icon className="w-5 h-5" />
+                      <Icon className="h-5 w-5" />
                     </motion.a>
                   );
                 })}
